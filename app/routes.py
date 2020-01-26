@@ -12,11 +12,11 @@ from app.models import User, ToDo
 def index():
     if request.method == "POST":
 
-        # Taking Form Data
+        # Taking Form Data To Add A Task
         task_title = request.form["title"]
         task_description = request.form["description"]
 
-        # Storing in ToDo Model
+        # Storing Data In ToDo Model
         new_task = ToDo(title = task_title, description = task_description)
         new_task.user_id = current_user.id
 
@@ -24,7 +24,7 @@ def index():
         try:
             db.session.add(new_task)
             db.session.commit()
-            flash("Your ToDo Item Successfully Created!")
+            flash("Item Added! Your ToDo Item Successfully Created!")
             return redirect(url_for("index"))
         except:
             flash("There was an issue adding your task! Please try again later.")
@@ -71,3 +71,15 @@ def register():
         flash("Congratulations! You are now a registered user.")
         return redirect(url_for("login"))
     return render_template("register.html", form = form)
+
+# ToDo Item Deletion
+@app.route("/delete/<int:id>")
+def delete(id):
+    task_to_delete = ToDo.query.get_or_404(id)
+
+    try:
+        db.session.delete(task_to_delete)
+        db.session.commit()
+        return redirect(url_for("index"))
+    except:
+        flash("There was an problem deleting that task! Please try again later.")
