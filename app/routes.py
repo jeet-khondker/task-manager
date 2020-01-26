@@ -10,8 +10,28 @@ from app.models import User, ToDo
 @app.route("/index", methods = ["POST", "GET"])
 @login_required
 def index():
-    todoitems = ToDo.query.filter_by(user_id = current_user.id).order_by(ToDo.date_created.desc()).all()
-    return render_template("index.html", todoitems = todoitems)
+    if request.method == "POST":
+
+        # Taking Form Data
+        task_title = request.form["title"]
+        task_description = request.form["description"]
+
+        # Storing in ToDo Model
+        new_task = ToDo(title = task_title, description = task_description)
+        new_task.user_id = current_user.id
+
+        # Adding In DB
+        try:
+            db.session.add(new_task)
+            db.session.commit()
+            flash("Your ToDo Item Successfully Created!")
+            return redirect(url_for("index"))
+        except:
+            flash("There was an issue adding your task! Please try again later.")
+
+    else:
+        todoitems = ToDo.query.filter_by(user_id = current_user.id).order_by(ToDo.date_created.desc()).all()
+        return render_template("index.html", todoitems = todoitems)
 
 # User Login Form URL Route
 @app.route("/login", methods = ["GET", "POST"])
