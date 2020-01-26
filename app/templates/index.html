@@ -6,7 +6,13 @@
 
 {% block content %}
     <h1>ToDo Tasks</h1>
-    <h2>Welcome, {{ current_user.username }}</h2>
+    <h2>Welcome,&emsp;{{ current_user.username }}</h2>
+
+    <form action="/" method="POST">
+        Title<input type="text" name="title" id="title">
+        Description<input type="text" name="description" id="description">
+        <input type="submit" value="Add Task">
+    </form>
 
     <table>
         <tr>
@@ -23,7 +29,13 @@
                     <td>{{ todoitem.title }}</td>
                     <td>{{ todoitem.description }}</td>
                     <td>{{ todoitem.date_created.date() }}</td>
-                    <td>{{ todoitem.is_completed }}</td>
+
+                    {% if todoitem.is_completed == 0 %}
+                        <td>Not Completed</td>
+                    {% else %}
+                        <td>Completed</td>
+                    {% endif %}
+
                     <td>
                         <a href="">Edit</a>
                         &emsp;
@@ -35,14 +47,5 @@
         
     </table>
     
-    <form action="/" method="POST">
-        Title<input type="text" name="title" id="title">
-        Description<input type="text" name="description" id="description">
-        Status<select>
-            <option value="notStarted">Not Started</option>
-            <option value="inProgress">In Progress</option>
-            <option value="completed">Completed</option>
-        </select>
-        <input type="submit" value="Add Task">
-    </form>
+    
 {% endblock %}
