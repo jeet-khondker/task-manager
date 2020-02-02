@@ -4,7 +4,7 @@
     Task Management System - User {{ current_user.firstName }}
 {% endblock %}
 
-{% block content %}
+{% block app_content %}
     <h1>User: {{ user.firstName }}&nbsp;{{ user.lastName }}</h1>
     <h1>Username: {{ user.username }}</h1>
     {% if user == current_user %}

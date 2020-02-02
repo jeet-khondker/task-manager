@@ -1,55 +1,15 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as bootstrapForms %}
 
 {% block title %}
     Task Management System - User Registration
 {% endblock %}
 
-{% block content %}
+{% block app_content %}
     <h1>User Registration</h1>
-    <form action="" method="POST" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}&emsp;
-            {{ form.username(size = 32) }}<br>
-            {% for error in form.username.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.firstName.label }}&emsp;
-            {{ form.firstName(size = 50) }}<br>
-            {% for error in form.firstName.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.lastName.label }}&emsp;
-            {{ form.lastName(size = 50) }}<br>
-            {% for error in form.lastName.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.email.label }}&emsp;
-            {{ form.email(size = 64) }}<br>
-            {% for error in form.email.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}&emsp;
-            {{ form.password(size = 32) }}<br>
-            {% for error in form.password.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.confirm_password.label }}&emsp;
-            {{ form.confirm_password(size = 32) }}<br>
-            {% for error in form.confirm_password.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+    <div class="row">
+        <div class="col-md-4">
+            {{ bootstrapForms.quick_form(form) }}
+        </div>
+    </div>
 {% endblock %}

@@ -4,18 +4,28 @@
     Task Management System - Dashboard
 {% endblock %}
 
-{% block content %}
-    <div class = "content">
+{% block app_content %}
+    <div class="container">
         <h1>ToDo Tasks</h1>
         <h2>Welcome,&nbsp;{{ current_user.firstName }}&nbsp;{{ current_user.lastName }}</h2>
 
-        <form action="/" method="POST">
-            Title<input type="text" name="title" id="title">
-            Description<input type="text" name="description" id="description">
-            <input type="submit" value="Add Task">
-        </form>
+        <div class="row">
+            <div class="col-md-4">
+                <form action="/" method="POST">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" aria-describedby="ToDo Title" placeholder="ToDo Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" name="description" id="description" aria-describedby="ToDo Description" placeholder="ToDo Description">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                </form>
+            </div>
+        </div>
 
-        <table>
+        <table class="table table-bordered">
             <tr>
                 <th>Task</th>
                 <th>Description</th>
@@ -38,9 +48,8 @@
                         {% endif %}
 
                         <td>
-                            <button class="edit_button" task_id="{{ todoitem.item_id }}">Edit</button>
-                            &emsp;
-                            <a href="/delete/{{todoitem.item_id}}">Delete</a>
+                            <a class="btn btn-success edit_button" task_id="{{ todoitem.item_id }}">Edit</a>
+                            <a href="/delete/{{todoitem.item_id}}" class="btn btn-danger edit_button" task_id="{{ todoitem.item_id }}">Delete</a>
                         </td>
                     </tr>
                     
