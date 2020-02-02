@@ -1,8 +1,8 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from app.models import User, ToDo
 
 # Home Page URL Route
@@ -83,3 +83,36 @@ def delete(id):
         return redirect(url_for("index"))
     except:
         flash("There was an problem deleting that task! Please try again later.")
+
+# ToDo Item Update
+# @app.route("/update/<int:id>", methods = ["GET", "POST"])
+# def update(id):
+
+# User Profile View
+@app.route("/user/<username>")
+@login_required
+def user(username):
+    user = User.query.filter_by(username = username).first_or_404()
+    return render_template("user.html", user = user)
+
+# Edit User Profile Information
+@app.route("/editProfile", methods = ["GET", "POST"])
+@login_required
+def editProfile():
+    form = EditProfileForm(current_user.username)
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.firstName = form.firstName.data
+        current_user.lastName = form.lastName.data
+        db.session.commit()
+        flash("Your changes have been saved")
+        return redirect(url_for("editProfile"))
+    elif request.method == "GET":
+        form.username.data = current_user.username
+        form.firstName.data = current_user.firstName
+        form.lastName.data = current_user.lastName
+    return render_template("editProfile.html", form = form)
+
+
+
+

@@ -4,6 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <div>
@@ -11,6 +14,7 @@
         {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Login</a>
         {% else %}
+            <a href="{{ url_for('user', username = current_user.username) }}">Profile</a>
             <a href="{{ url_for('logout') }}">Logout</a>
         {% endif %}
     </div>
@@ -25,5 +29,8 @@
     {% endwith %}
 
     {% block content %}{% endblock %}
+
+    <!-- Custom JS Script -->
+    <script src="{{ url_for('static', filename = 'js/app.js') }}"></script>
 </body>
 </html>

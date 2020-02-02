@@ -13,6 +13,8 @@ class LoginForm(FlaskForm):
 # User Registration Form
 class RegistrationForm(FlaskForm):
     username = StringField("Username", validators = [DataRequired(message="Username is required")])
+    firstName = StringField("First Name", validators = [DataRequired(message="First Name is required")])
+    lastName = StringField("Last Name", validators = [DataRequired(message="Last Name is required")])
     email = StringField("Email", validators = [DataRequired(message="Username is required"), Email()])
     password = PasswordField("Password", validators = [DataRequired(message="Password is required")])
     confirm_password = PasswordField("Repeat Password", validators = [DataRequired(message="Re-entry of Password is required"), EqualTo("password")])
@@ -27,3 +29,20 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email = email.data).first()
         if user is not None:
             raise ValidationError("Email address already exists! Please use a different email address.")
+
+# User Profile Edit Form
+class EditProfileForm(FlaskForm):
+    username = StringField("Username", validators = [DataRequired(message="Username is required")])
+    firstName = StringField("First Name", validators = [DataRequired(message="First Name is required")])
+    lastName = StringField("Last Name", validators = [DataRequired(message="Last Name is required")])
+    submit = SubmitField("Edit")
+
+    def __init__(self, original_username, *args, **kwargs):
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+        self.original_username = original_username
+
+    def validate_username(self, username):
+        if username.data != self.original_username:
+            user = User.query.filter_by(username = self.username.data).first()
+            if user is not None:
+                raise ValidationError("Please use a different username.")

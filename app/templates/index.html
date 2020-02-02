@@ -5,47 +5,49 @@
 {% endblock %}
 
 {% block content %}
-    <h1>ToDo Tasks</h1>
-    <h2>Welcome,&emsp;{{ current_user.username }}</h2>
+    <div class = "content">
+        <h1>ToDo Tasks</h1>
+        <h2>Welcome,&nbsp;{{ current_user.firstName }}&nbsp;{{ current_user.lastName }}</h2>
 
-    <form action="/" method="POST">
-        Title<input type="text" name="title" id="title">
-        Description<input type="text" name="description" id="description">
-        <input type="submit" value="Add Task">
-    </form>
+        <form action="/" method="POST">
+            Title<input type="text" name="title" id="title">
+            Description<input type="text" name="description" id="description">
+            <input type="submit" value="Add Task">
+        </form>
 
-    <table>
-        <tr>
-            <th>Task</th>
-            <th>Description</th>
-            <th>Date Added</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        
-            {% for todoitem in todoitems %}
-                
-                <tr>
-                    <td>{{ todoitem.title }}</td>
-                    <td>{{ todoitem.description }}</td>
-                    <td>{{ todoitem.date_created.date() }}</td>
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            
+                {% for todoitem in todoitems %}
+                    
+                    <tr>
+                        <td id="title{{ todoitem.item_id }}">{{ todoitem.title }}</td>
+                        <td id="description{{ todoitem.item_id }}">{{ todoitem.description }}</td>
+                        <td>{{ todoitem.date_created.date() }}</td>
 
-                    {% if todoitem.is_completed == 0 %}
-                        <td>Not Completed</td>
-                    {% else %}
-                        <td>Completed</td>
-                    {% endif %}
+                        {% if todoitem.is_completed == 0 %}
+                            <td id="is_completed{{ todoitem.item_id }}">Not Completed</td>
+                        {% else %}
+                            <td id="is_completed{{ todoitem.item_id }}">Completed</td>
+                        {% endif %}
 
-                    <td>
-                        <a href="">Edit</a>
-                        &emsp;
-                        <a href="/delete/{{todoitem.item_id}}">Delete</a>
-                    </td>
-                </tr>
-                
-            {% endfor %}
-        
-    </table>
+                        <td>
+                            <button class="edit_button" task_id="{{ todoitem.item_id }}">Edit</button>
+                            &emsp;
+                            <a href="/delete/{{todoitem.item_id}}">Delete</a>
+                        </td>
+                    </tr>
+                    
+                {% endfor %}
+            
+        </table>
+    </div>
     
     
 {% endblock %}
