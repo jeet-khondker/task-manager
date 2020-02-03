@@ -1,5 +1,11 @@
 {% extends "bootstrap/base.html" %}
 
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pc-style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block title %}{% endblock %}
 
 {% block navbar %}
@@ -20,6 +26,7 @@
                         <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% else %}
                         <li><a href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
+                        <li><a href="">Task Report</a></li>
                         <li><a href="{{ url_for('logout') }}">Logout</a></li>
                     {% endif %}
                 </ul>
@@ -30,16 +37,25 @@
 
 {% block content %}
     <div class="container">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+        <div class="row">
+            
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success alert-dismissable col-md-6 col-md-offset-3" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
 
-        {# Application Content needs to be provided in the app_content block #}
-        {% block app_content %}{% endblock %}
+            {# Application Content needs to be provided in the app_content block #}
+            {% block app_content %}{% endblock %}
+            
+        </div>
     </div>
 {% endblock %}
 

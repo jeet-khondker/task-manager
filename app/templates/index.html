@@ -25,12 +25,12 @@
             </div>
         </div>
 
-        <table class="table table-bordered">
+        <h1 class="text-center">Your Not Completed Tasks</h1>
+        <table class="table table-hover table-dark">
             <tr>
                 <th>Task</th>
                 <th>Description</th>
                 <th>Date Added</th>
-                <th>Status</th>
                 <th>Actions</th>
             </tr>
             
@@ -41,15 +41,17 @@
                         <td id="description{{ todoitem.item_id }}">{{ todoitem.description }}</td>
                         <td>{{ todoitem.date_created.date() }}</td>
 
+                        <!--
                         {% if todoitem.is_completed == 0 %}
                             <td id="is_completed{{ todoitem.item_id }}">Not Completed</td>
                         {% else %}
                             <td id="is_completed{{ todoitem.item_id }}">Completed</td>
-                        {% endif %}
+                        {% endif %} -->
 
                         <td>
-                            <a class="btn btn-success edit_button" task_id="{{ todoitem.item_id }}">Edit</a>
-                            <a href="/delete/{{todoitem.item_id}}" class="btn btn-danger edit_button" task_id="{{ todoitem.item_id }}">Delete</a>
+                            <a class="btn btn-primary edit_button" task_id="{{ todoitem.item_id }}">Edit</a>
+                            <a href="/delete/{{todoitem.item_id}}" class="btn btn-danger">Delete</a>
+                            <a href="" class="btn btn-success">Mark As Done</a>
                         </td>
                     </tr>
                     
