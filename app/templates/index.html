@@ -37,8 +37,8 @@
                 {% for todoitem in todoitems %}
                     
                     <tr>
-                        <td id="title{{ todoitem.item_id }}">{{ todoitem.title }}</td>
-                        <td id="description{{ todoitem.item_id }}">{{ todoitem.description }}</td>
+                        <td>{{ todoitem.title }}</td>
+                        <td>{{ todoitem.description }}</td>
                         <td>{{ todoitem.date_created.date() }}</td>
 
                         <!--
@@ -49,11 +49,41 @@
                         {% endif %} -->
 
                         <td>
-                            <a class="btn btn-primary edit_button" task_id="{{ todoitem.item_id }}">Edit</a>
+                            <a href="/update/{{todoitem.item_id}}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">Edit</a>
                             <a href="/delete/{{todoitem.item_id}}" class="btn btn-danger">Delete</a>
                             <a href="" class="btn btn-success">Mark As Done</a>
                         </td>
                     </tr>
+
+                    <!-- Edit ToDo Item Popup Dialog Box -->
+                    <div id="editItem{{todoitem.item_id}}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="text-center modal-title">Update Task</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ url_for('update') }}" method="POST">
+                                        <div class="form-group">
+                                            <label>Task Title</label>
+                                            <input type="hidden" name="item_id" value="{{todoitem.item_id}}">
+                                            <input type="text" class="form-control" name="title" value="{{todoitem.title}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Task Description</label>
+                                            <input type="text" class="form-control" name="description" value="{{todoitem.description}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-success" type="submit">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                 {% endfor %}
             

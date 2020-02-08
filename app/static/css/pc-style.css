@@ -5,3 +5,7 @@ body {
 a.navbar-brand {
     font-family: 'Bebas Neue', cursive;
 }
+
+.navbar {
+    background-color: darkgray;
+}

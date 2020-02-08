@@ -43,3 +43,7 @@ class ToDo(db.Model):
 
     def __repr__(self):
         return "<Task {}>".format(self.title)
+
+    def __init__(self, title, description):
+        self.title = title
+        self.description = description

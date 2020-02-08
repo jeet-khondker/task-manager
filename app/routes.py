@@ -113,6 +113,19 @@ def editProfile():
         form.lastName.data = current_user.lastName
     return render_template("editProfile.html", form = form)
 
+# Update Task
+@app.route("/update", methods = ["GET", "POST"])
+def update():
+    if request.method == "POST":
+        task = ToDo.query.get(request.form.get("item_id"))
+        task.title = request.form["title"]
+        task.description = request.form["description"]
+
+        db.session.commit()
+        flash("Task Item Updated Successfully.")
+        return redirect(url_for("index"))
+
+
 
 
 
