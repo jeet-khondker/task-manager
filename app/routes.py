@@ -5,6 +5,8 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from app.models import User, ToDo
 
+from datetime import datetime
+
 # Home Page URL Route
 @app.route('/', methods = ["POST", "GET"])
 @app.route("/index", methods = ["POST", "GET"])
@@ -19,6 +21,7 @@ def index():
         # Storing Data In ToDo Model
         new_task = ToDo(title = task_title, description = task_description)
         new_task.user_id = current_user.id
+        new_task.is_completed = False
 
         # Adding In DB
         try:
@@ -72,6 +75,19 @@ def register():
         return redirect(url_for("login"))
     return render_template("register.html", form = form)
 
+# Update Task
+@app.route("/update", methods = ["GET", "POST"])
+def update():
+    if request.method == "POST":
+        task = ToDo.query.get(request.form.get("item_id"))
+        task.title = request.form["title"]
+        task.description = request.form["description"]
+        task.date_updated = datetime.utcnow()
+
+        db.session.commit()
+        flash("Task Item Updated Successfully.")
+        return redirect(url_for("index"))
+
 # ToDo Item Deletion
 @app.route("/delete/<int:id>")
 def delete(id):
@@ -83,10 +99,6 @@ def delete(id):
         return redirect(url_for("index"))
     except:
         flash("There was an problem deleting that task! Please try again later.")
-
-# ToDo Item Update
-# @app.route("/update/<int:id>", methods = ["GET", "POST"])
-# def update(id):
 
 # User Profile View
 @app.route("/user/<username>")
@@ -113,17 +125,30 @@ def editProfile():
         form.lastName.data = current_user.lastName
     return render_template("editProfile.html", form = form)
 
-# Update Task
-@app.route("/update", methods = ["GET", "POST"])
-def update():
-    if request.method == "POST":
-        task = ToDo.query.get(request.form.get("item_id"))
-        task.title = request.form["title"]
-        task.description = request.form["description"]
+# Marking Task As Complete
+@app.route("/done/<int:id>")
+@login_required
+def done_task(id):
+    task_completed = ToDo.query.get_or_404(id)
+    task_completed.is_completed = True
+    task_completed.date_completed = datetime.utcnow()
+    
+    db.session.commit()
 
-        db.session.commit()
-        flash("Task Item Updated Successfully.")
-        return redirect(url_for("index"))
+    tasks = ToDo.query.all()
+
+    return redirect(url_for("index"))
+
+# Task Report
+@app.route("/taskreport/<username>")
+@login_required
+def view_taskreport(username):
+    return render_template("taskreport.html")
+
+
+
+
+
 
 
 
