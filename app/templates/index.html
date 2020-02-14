@@ -8,11 +8,10 @@
 
     <div class="container">
         <div class="row">
-            <h1>ToDo Tasks</h1>
-            <h2>Welcome,&nbsp;{{ current_user.firstName }}&nbsp;{{ current_user.lastName }}</h2>
+            <h1 class="text-center">ToDo Tasks</h1>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6 col-md-offset-3">
                     <form action="/" method="POST">
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -27,7 +26,7 @@
                 </div>
             </div>
 
-            <h1 class="text-center">Your Not Completed Tasks</h1>
+            <h1 class="text-center">Tasks At A Glance</h1>
             <table class="table table-hover table-dark">
                 <tr>
                     <th>Task</th>
@@ -46,15 +45,39 @@
                                 <td><del>{{ todoitem.title }}</del></td>
                                 <td><del>{{ todoitem.description }}</del></td>
                                 <td><del>{{ todoitem.date_created.date() }}</del></td>
-                                <td><del>-</del></td>
-                                <td>{{ todoitem.date_completed.date() }}</td>
+                                <td><del>
+                                    {% if todoitem.date_updated != None %}
+                                        {{ todoitem.date_updated.date() }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </del></td>
+                                <td>
+                                    {% if todoitem.date_completed != None %}
+                                        {{ todoitem.date_completed.date() }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
                                 <td>Completed</td>
                             {% else %}
                                 <td>{{ todoitem.title }}</td>
                                 <td>{{ todoitem.description }}</td>
                                 <td>{{ todoitem.date_created.date() }}</td>
-                                <td>-</td>
-                                <td>-</td>
+                                <td>
+                                    {% if todoitem.date_updated != None %}
+                                        {{ todoitem.date_updated.date() }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if todoitem.date_completed != None %}
+                                        {{ todoitem.date_completed.date() }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
                                 <td>Not Completed</td>
                             {% endif %}
 
@@ -66,7 +89,7 @@
                                 {% if todoitem.is_completed == False %}
                                     <a href="/done/{{ todoitem.item_id }}" class="btn btn-success">Mark As Done</a>
                                 {% else %}
-                                    <a href="/done/{{ todoitem.item_id }}" class="btn btn-success" disabled="disabled">Mark As Done</a>
+                                    <a href="#" class="btn btn-success" disabled="disabled">Mark As Done</a>
                                 {% endif %}
                             </td>
                         </tr>

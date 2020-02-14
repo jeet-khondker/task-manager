@@ -1,37 +1,22 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as bootstrapForms %}
 
 {% block title %}
     Task Management System - Edit User Profile
 {% endblock %}
 
-{% block content %}
+{% block app_content %}
 
-    <h1>Edit User Profile Information</h1>
+    <div class="comntainer">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="text-center">Edit User Profile Information</h1>
+                {{ bootstrapForms.quick_form(form) }}
+            </div>
+        </div>
+    </div>
+    
 
-    <form action = "", method = "POST">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}&emsp;
-            {{ form.username(size = 64) }}<br>
-            {% for error in form.username.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.firstName.label }}&emsp;
-            {{ form.firstName(size = 50) }}<br>
-            {% for error in form.firstName.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.lastName.label }}&emsp;
-            {{ form.lastName(size = 50) }}<br>
-            {% for error in form.lastName.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+    
 
 {% endblock %}

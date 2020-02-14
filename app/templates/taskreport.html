@@ -6,4 +6,14 @@
 
 {% block app_content %}
     <h1 class="text-center">{{ current_user.firstName }} Task Report</h1>
+
+    {% for completed_items in completed_todoitems %}
+
+        {% if completed_items.is_completed == True %}
+
+        <p>{{ completed_items.title }}</p>            
+
+        {% endif %}
+
+    {% endfor %}
 {% endblock %}

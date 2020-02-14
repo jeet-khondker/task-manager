@@ -139,11 +139,12 @@ def done_task(id):
 
     return redirect(url_for("index"))
 
-# Task Report
+# Task Report - Summarizing All The Completed Tasks
 @app.route("/taskreport/<username>")
 @login_required
 def view_taskreport(username):
-    return render_template("taskreport.html")
+    completed_todoitems = ToDo.query.filter_by(user_id = current_user.id and ToDo.is_completed == True).order_by(ToDo.date_created.desc()).all()
+    return render_template("taskreport.html", completed_todoitems = completed_todoitems)
 
 
 
