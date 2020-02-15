@@ -1,5 +1,6 @@
 body {
-    background-color: azure;
+    background-color: #f5f5f5;
+    height: 100%;
 }
 
 a.navbar-brand {
@@ -8,4 +9,11 @@ a.navbar-brand {
 
 .navbar {
     background-color: darkgray;
+}
+
+.form-login {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 }

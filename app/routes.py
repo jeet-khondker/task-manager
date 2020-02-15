@@ -12,29 +12,8 @@ from datetime import datetime
 @app.route("/index", methods = ["POST", "GET"])
 @login_required
 def index():
-    if request.method == "POST":
-
-        # Taking Form Data To Add A Task
-        task_title = request.form["title"]
-        task_description = request.form["description"]
-
-        # Storing Data In ToDo Model
-        new_task = ToDo(title = task_title, description = task_description)
-        new_task.user_id = current_user.id
-        new_task.is_completed = False
-
-        # Adding In DB
-        try:
-            db.session.add(new_task)
-            db.session.commit()
-            flash("Item Added! Your ToDo Item Successfully Created!")
-            return redirect(url_for("index"))
-        except:
-            flash("There was an issue adding your task! Please try again later.")
-
-    else:
-        todoitems = ToDo.query.filter_by(user_id = current_user.id).order_by(ToDo.date_created.desc()).all()
-        return render_template("index.html", todoitems = todoitems)
+    todoitems = ToDo.query.filter_by(user_id = current_user.id).order_by(ToDo.date_created.desc()).all()
+    return render_template("index.html", todoitems = todoitems)
 
 # User Login Form URL Route
 @app.route("/login", methods = ["GET", "POST"])
@@ -74,6 +53,28 @@ def register():
         flash("Congratulations! You are now a registered user.")
         return redirect(url_for("login"))
     return render_template("register.html", form = form)
+
+# Add Task
+@app.route("/add", methods = ["POST"])
+def add_task():
+    if request.method == "POST":
+        # Taking Form Data To Add A Task
+        task_title = request.form["title"]
+        task_description = request.form["description"]
+
+        # Storing Data In ToDo Model
+        new_task = ToDo(title = task_title, description = task_description)
+        new_task.user_id = current_user.id
+        new_task.is_completed = False
+
+        # Adding In DB
+        try:
+            db.session.add(new_task)
+            db.session.commit()
+            flash("Item Added! Your ToDo Item Successfully Created!")
+            return redirect(url_for("index"))
+        except:
+            flash("There was an issue adding your task! Please try again later.")
 
 # Update Task
 @app.route("/update", methods = ["GET", "POST"])
