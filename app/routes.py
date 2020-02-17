@@ -141,10 +141,14 @@ def done_task(id):
     return redirect(url_for("index"))
 
 # Task Report - Summarizing All The Completed Tasks
-@app.route("/taskreport/<username>")
+@app.route("/taskreport/<user_id>")
 @login_required
-def view_taskreport(username):
-    completed_todoitems = ToDo.query.filter_by(user_id = current_user.id and ToDo.is_completed == True).order_by(ToDo.date_created.desc()).all()
+def view_taskreport(user_id):
+    # All Completed Tasks By A Specific User
+    completed_todoitems = db.session.query(ToDo).filter_by(user_id = current_user.id).filter(ToDo.is_completed == True).order_by(ToDo.date_created.desc()).all()
+    # user = User.query.get(current_user.username)
+    # tasks = user.todoitems.query.all()
+    # completed_todoitems = ToDo.query.filter_by(tasks.is_completed == True).order_by(ToDo.date_created.desc()).all()
     return render_template("taskreport.html", completed_todoitems = completed_todoitems)
 
 

@@ -7,13 +7,29 @@
 {% block app_content %}
     <h1 class="text-center">{{ current_user.firstName }} Task Report</h1>
 
-    {% for completed_items in completed_todoitems %}
+    {% if completed_todoitems|length < 1 %}
+        <h3 class="text-center">Currently you did not complete any tasks, {{ current_user.firstName }}.</h3>
+    {% else %}
+        <table class="table table-hover table-dark">
+            <tr>
+                <th>Task Name</th>
+                <th>Task Description</th>
+                <th>Date Started</th>
+                <th>Date Completed</th>
+                <th>Number Of Days Worked</th>
+            </tr>
 
-        {% if completed_items.is_completed == True %}
-
-        <p>{{ completed_items.title }}</p>            
-
-        {% endif %}
-
-    {% endfor %}
+            {% for completed_items in completed_todoitems %}
+                <tr>
+                    {% if completed_items.is_completed == True %}
+                        <td>{{ completed_items.title }}</td>
+                        <td>{{ completed_items.description }}</td>
+                        <td>{{ completed_items.date_created.date() }}</td>
+                        <td>{{ completed_items.date_completed.date() }}</td>
+                        <td>{{ (completed_items.date_completed - completed_items.date_created).days }}&nbsp;Day(s)</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
 {% endblock %}

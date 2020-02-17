@@ -16,4 +16,24 @@ a.navbar-brand {
     max-width: 330px;
     padding: 15px;
     margin: auto;
+    border: 1px solid black;
 }
+
+/* Hiding The Labels Of Login Form */
+.form-login .control-label {
+    display: none;
+}
+
+.form-register {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    border: 1px solid black;
+}
+
+/* Hiding The Labels Of Registration Form */
+.form-register .control-label {
+    display: none;
+}
+

@@ -8,144 +8,152 @@
 
     <div class="container">
         <div class="row">
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <h1>Manage Your Tasks</h1>
-                </div>
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#addTask">Add New Task</button>
+
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h2>Manage Your Tasks</h2>
+                    </div>
+                    <div class="col-md-2">
+                        <span class="align-middle">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTask">Add New Task</button>
+                        </span>
+                    </div>
                 </div>
             </div>
 
             <h1 class="text-center">Tasks At A Glance</h1>
-            <table class="table table-hover table-dark">
-                <tr>
-                    <th>Task</th>
-                    <th>Description</th>
-                    <th>Date Added</th>
-                    <th>Date Updated</th>
-                    <th>Date Completed</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-                
-                    {% for todoitem in todoitems %}
-                        
-                        <tr>
-                            {% if todoitem.is_completed == True %}
-                                <td><del>{{ todoitem.title }}</del></td>
-                                <td><del>{{ todoitem.description }}</del></td>
-                                <td><del>{{ todoitem.date_created.date() }}</del></td>
-                                <td><del>
-                                    {% if todoitem.date_updated != None %}
-                                        {{ todoitem.date_updated.date() }}
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                </del></td>
-                                <td>
-                                    {% if todoitem.date_completed != None %}
-                                        {{ todoitem.date_completed.date() }}
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                </td>
-                                <td>Completed</td>
-                            {% else %}
-                                <td>{{ todoitem.title }}</td>
-                                <td>{{ todoitem.description }}</td>
-                                <td>{{ todoitem.date_created.date() }}</td>
-                                <td>
-                                    {% if todoitem.date_updated != None %}
-                                        {{ todoitem.date_updated.date() }}
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% if todoitem.date_completed != None %}
-                                        {{ todoitem.date_completed.date() }}
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                </td>
-                                <td>Not Completed</td>
-                            {% endif %}
-
-                            <td>
-                                <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">Edit</a>
-
-                                <a href="/delete/{{ todoitem.item_id }}" class="btn btn-danger">Delete</a>
-
-                                {% if todoitem.is_completed == False %}
-                                    <a onclick="playDelSound(event);" href="/done/{{ todoitem.item_id }}" class="btn btn-success">Mark As Done</a>
+            {% if todoitems|length < 1 %}
+                <h3 class="text-center">Currently you dont have any tasks, {{ current_user.firstName }}. Create One!</h3>
+            {% else %}
+                <table class="table table-hover table-dark">
+                    <tr>
+                        <th>Task</th>
+                        <th>Description</th>
+                        <th>Date Added</th>
+                        <th>Date Updated</th>
+                        <th>Date Completed</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    
+                        {% for todoitem in todoitems %}
+                            
+                            <tr>
+                                {% if todoitem.is_completed == True %}
+                                    <td><del>{{ todoitem.title }}</del></td>
+                                    <td><del>{{ todoitem.description }}</del></td>
+                                    <td><del>{{ todoitem.date_created.date() }}</del></td>
+                                    <td><del>
+                                        {% if todoitem.date_updated != None %}
+                                            {{ todoitem.date_updated.date() }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </del></td>
+                                    <td>
+                                        {% if todoitem.date_completed != None %}
+                                            {{ todoitem.date_completed.date() }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>Completed</td>
                                 {% else %}
-                                    <a href="#" class="btn btn-success" disabled="disabled">Mark As Done</a>
+                                    <td>{{ todoitem.title }}</td>
+                                    <td>{{ todoitem.description }}</td>
+                                    <td>{{ todoitem.date_created.date() }}</td>
+                                    <td>
+                                        {% if todoitem.date_updated != None %}
+                                            {{ todoitem.date_updated.date() }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if todoitem.date_completed != None %}
+                                            {{ todoitem.date_completed.date() }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>Not Completed</td>
                                 {% endif %}
-                            </td>
-                        </tr>
 
-                        <!-- Add ToDo Item Popup Dialog Box -->
-                        <div id="addTask" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="text-center modal-title">Add Task</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ url_for('add_task') }}" method="POST" autocomplete="off">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Task Title" name="title" required="1">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Task Description" name="description" required="1">
-                                            </div>
-                                            <div class="form-group">
-                                                <button class="btn btn-success" type="submit">Add Task</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <td>
+                                    <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">Edit</a>
+
+                                    <a href="/delete/{{ todoitem.item_id }}" class="btn btn-danger">Delete</a>
+
+                                    {% if todoitem.is_completed == False %}
+                                        <a onclick="playDelSound(event);" href="/done/{{ todoitem.item_id }}" class="btn btn-success">Mark As Done</a>
+                                    {% else %}
+                                        <a href="#" class="btn btn-success" disabled="disabled">Mark As Done</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+
+                            <!-- Add ToDo Item Popup Dialog Box -->
+                            <div id="addTask" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="text-center modal-title">Add Task</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url_for('add_task') }}" method="POST" autocomplete="off">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Task Title" name="title" required="1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Task Description" name="description" required="1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn btn-success" type="submit">Add Task</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Edit ToDo Item Popup Dialog Box -->
-                        <div id="editItem{{todoitem.item_id}}" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="text-center modal-title">Update Task</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ url_for('update') }}" method="POST">
-                                            <div class="form-group">
-                                                <label>Task Title</label>
-                                                <input type="hidden" name="item_id" value="{{todoitem.item_id}}">
-                                                <input type="text" class="form-control" name="title" value="{{todoitem.title}}">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Task Description</label>
-                                                <input type="text" class="form-control" name="description" value="{{todoitem.description}}">
-                                            </div>
-                                            <div class="form-group">
-                                                <button class="btn btn-success" type="submit">Update Task</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <!-- Edit ToDo Item Popup Dialog Box -->
+                            <div id="editItem{{todoitem.item_id}}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="text-center modal-title">Update Task</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url_for('update') }}" method="POST">
+                                                <div class="form-group">
+                                                    <label>Task Title</label>
+                                                    <input type="hidden" name="item_id" value="{{todoitem.item_id}}">
+                                                    <input type="text" class="form-control" name="title" value="{{todoitem.title}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Task Description</label>
+                                                    <input type="text" class="form-control" name="description" value="{{todoitem.description}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn btn-success" type="submit">Update Task</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                    {% endfor %}
-                
-            </table>
+                            
+                        {% endfor %}
+                    
+                </table>
+            {% endif %}
         </div>
     </div>
     
