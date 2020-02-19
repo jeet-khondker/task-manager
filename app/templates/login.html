@@ -15,6 +15,7 @@
                     {{ bootstrapForms.quick_form(form, extra_classes = "form-login", button_map = {"submit": "btn btn-success"}) }}
                 </div>
                 <p>Are You A New User?&nbsp;<a class="btn btn-primary" href="{{ url_for('register') }}">Register Now</a></p>
+                <p>Forgot Your Password?&nbsp;<a class="btn btn-primary" href="{{ url_for('reset_password_request') }}">Reset Password</a></p>
             </div>
         </div>
     </div>

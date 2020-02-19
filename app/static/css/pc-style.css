@@ -37,3 +37,13 @@ a.navbar-brand {
     display: none;
 }
 
+/* Hiding The Labels Of Password Reset Request Form */
+.form-passwordresetrequest .control-label {
+    display: none;
+}
+
+/* Hiding The Labels Of Password Reset Form */
+.form-passwordreset .control-label {
+    display: none;
+}
+

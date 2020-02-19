@@ -83,10 +83,10 @@
                                 <td>
                                     <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">Edit</a>
 
-                                    <a href="/delete/{{ todoitem.item_id }}" class="btn btn-danger">Delete</a>
+                                    <a onclick="playDelSound(event);" href="/delete/{{ todoitem.item_id }}" class="btn btn-danger">Delete</a>
 
                                     {% if todoitem.is_completed == False %}
-                                        <a onclick="playDelSound(event);" href="/done/{{ todoitem.item_id }}" class="btn btn-success">Mark As Done</a>
+                                        <a href="/done/{{ todoitem.item_id }}" class="btn btn-successs">Mark As Done</a>
                                     {% else %}
                                         <a href="#" class="btn btn-success" disabled="disabled">Mark As Done</a>
                                     {% endif %}
