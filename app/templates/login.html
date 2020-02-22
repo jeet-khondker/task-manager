@@ -9,15 +9,22 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
-                <h1>Task Manager</h1>
+                <h1 class="heading">📝&emsp;Task Manager</h1>
                 <h4>Login & Start Managing Your Tasks!</h4>
                 <div class="row">
-                    {{ bootstrapForms.quick_form(form, extra_classes = "form-login", button_map = {"submit": "btn btn-success"}) }}
+                    {{ bootstrapForms.quick_form(form, extra_classes = "form-login", button_map = {"submit": "btn btn-login text-uppercase"}) }}
                 </div>
-                <p>Are You A New User?&nbsp;<a class="btn btn-primary" href="{{ url_for('register') }}">Register Now</a></p>
-                <p>Forgot Your Password?&nbsp;<a class="btn btn-primary" href="{{ url_for('reset_password_request') }}">Reset Password</a></p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Are You A New User?<br/><a class="btn btn-register" href="{{ url_for('register') }}">Register Now</a></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Forgot Your Password?<br/><a class="btn btn-passwordreset" href="{{ url_for('reset_password_request') }}">Reset Password</a></p>
+                    </div>
+                </div>
+                
+                
             </div>
         </div>
     </div>
-    
 {% endblock %}

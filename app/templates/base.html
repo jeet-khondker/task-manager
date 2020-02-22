@@ -9,7 +9,6 @@
 {% block title %}{% endblock %}
 
 {% block navbar %}
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <div class="navbar-header">
@@ -19,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">Task Manager</a>
+                <a class="navbar-brand text-uppercase" href="{{ url_for('index') }}">Task Manager</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -42,11 +41,11 @@
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                        <div class="alert alert-success alert-dismissable col-md-6 col-md-offset-3" role="alert">
+                        <div class="alert alert-success alert-dismissable col-md-6 col-md-offset-3 col-xs-12" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="close">
                                 <span aria-hidden="true">x</span>
                             </button>
-                            {{ message }}
+                            <div class="text-center">{{ message }}</div>
                         </div>
                     {% endfor %}
                 {% endif %}
@@ -61,5 +60,6 @@
 
 {% block scripts %}
     {{ super() }}
+    {{ moment.include_moment() }}
     <script src="{{ url_for('.static', filename='js/app.js') }}"></script>
 {% endblock %}

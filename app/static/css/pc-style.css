@@ -1,22 +1,71 @@
-body {
-    background-color: #f5f5f5;
+body, html {
     height: 100%;
+    /* background-color: #dee2e6; */
+    background: rgba(255,255,255,1);
+    background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(245,245,245,0.9) 47%, rgba(237,237,237,0.79) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(245,245,245,0.9)), color-stop(100%, rgba(237,237,237,0.79)));
+    background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(245,245,245,0.9) 47%, rgba(237,237,237,0.79) 100%);
+    background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(245,245,245,0.9) 47%, rgba(237,237,237,0.79) 100%);
+    background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(245,245,245,0.9) 47%, rgba(237,237,237,0.79) 100%);
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(245,245,245,0.9) 47%, rgba(237,237,237,0.79) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
 }
 
-a.navbar-brand {
-    font-family: 'Bebas Neue', cursive;
+* {
+    box-sizing: border-box;
+  }
+
+  hr {
+    max-width: 50px;
+    border-width: 3px;
+    border-color: #F05F40;
+  }
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-size: 15px;
 }
 
 .navbar {
-    background-color: darkgray;
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+    /* the rest of your styling */
+}
+
+table tr th {
+    text-align: center;
+}
+
+table tr td {
+    text-align: center;
+}
+
+.table {
+    background-color: white;
+}
+
+table tr.table-heading {
+    background-color: #000;
+    color: #fff;
+}
+
+.data-hover:hover {
+    background-color: #a6a6ed;
 }
 
 .form-login {
     width: 100%;
     max-width: 330px;
-    padding: 15px;
-    margin: auto;
-    border: 1px solid black;
+    padding: 25px;
+    margin: 25px auto 25px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
 }
 
 /* Hiding The Labels Of Login Form */
@@ -24,12 +73,28 @@ a.navbar-brand {
     display: none;
 }
 
+.form-control {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    border-radius: 0px;
+    background: #f1f1f1;
+
+}
+
+.form-control:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
 .form-register {
     width: 100%;
     max-width: 330px;
-    padding: 15px;
-    margin: auto;
-    border: 1px solid black;
+    padding: 25px;
+    margin: 25px auto 25px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
 }
 
 /* Hiding The Labels Of Registration Form */
@@ -42,8 +107,165 @@ a.navbar-brand {
     display: none;
 }
 
+.form-passwordresetrequest {
+    width: 100%;
+    max-width: 330px;
+    padding: 25px;
+    margin: 25px auto 25px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+}
+
 /* Hiding The Labels Of Password Reset Form */
 .form-passwordreset .control-label {
     display: none;
 }
 
+h1.heading {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 50px;
+}
+
+.btn-login {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn-login:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+.nav li a {
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.btn-register {
+    background-color: #007bff;
+    color: #fff;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.btn-register:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+.btn-passwordreset {
+    background-color: #868e96;
+    color: #fff;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.btn-passwordreset:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+.form-editProfile {
+    width: 100%;
+    max-width: 330px;
+    padding: 25px;
+    margin: 25px auto 25px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+}
+
+.btn-editProfile {
+    background-color: #292b2c;
+    color: #fff;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.btn-editProfile:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+.edit_button {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #5cb85c;
+    border-radius: 25px;
+    cursor: pointer;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.edit_button:hover {
+    background-color: #5cb85c;
+    color: #fff;
+    border: none;
+}
+
+.edit_button:focus {
+    background-color: #5cb85c;
+    border: none;
+}
+
+.delete-button {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #eb3323;
+    border-radius: 25px;
+    cursor: pointer;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.delete-button:hover {
+    background-color: #eb3323;
+    color: #fff;
+    border: none;
+}
+
+.delete-button:focus {
+    background-color: #eb3323;
+    border: none;
+}
+
+.btn-tobecomplete {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #0275d8;
+    border-radius: 25px;
+    cursor: pointer;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.btn-tobecomplete:hover {
+    background-color: #0275d8;
+    color: #fff;
+    border: none;
+}
+
+.btn-tobecomplete:focus {
+    background-color: #0275d8;
+    border: none;
+}

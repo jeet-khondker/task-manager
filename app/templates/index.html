@@ -26,8 +26,8 @@
             {% if todoitems|length < 1 %}
                 <h3 class="text-center">Currently you dont have any tasks, {{ current_user.firstName }}. Create One!</h3>
             {% else %}
-                <table class="table table-hover table-dark">
-                    <tr>
+                <table class="table table-dark">
+                    <tr class="table-heading">
                         <th>Task</th>
                         <th>Description</th>
                         <th>Date Added</th>
@@ -39,18 +39,19 @@
                     
                         {% for todoitem in todoitems %}
                             
-                            <tr>
-                                {% if todoitem.is_completed == True %}
-                                    <td><del>{{ todoitem.title }}</del></td>
-                                    <td><del>{{ todoitem.description }}</del></td>
-                                    <td><del>{{ todoitem.date_created.date() }}</del></td>
-                                    <td><del>
+                            
+                            {% if todoitem.is_completed == True %}
+                                <tr class="data-hover" style="color: #867979; background-color: #5c5f63;">
+                                    <td>{{ todoitem.title }}</td>
+                                    <td>{{ todoitem.description }}</td>
+                                    <td>{{ todoitem.date_created.date() }}</td>
+                                    <td>
                                         {% if todoitem.date_updated != None %}
                                             {{ todoitem.date_updated.date() }}
                                         {% else %}
                                             -
                                         {% endif %}
-                                    </del></td>
+                                    </td>
                                     <td>
                                         {% if todoitem.date_completed != None %}
                                             {{ todoitem.date_completed.date() }}
@@ -59,7 +60,13 @@
                                         {% endif %}
                                     </td>
                                     <td>Completed</td>
-                                {% else %}
+                                    <td>
+                                        <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">Edit</a>
+                                        <a onclick="playDelSound(event);" href="/delete/{{ todoitem.item_id }}" class="btn delete-button">Delete</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr class="data-hover">
                                     <td>{{ todoitem.title }}</td>
                                     <td>{{ todoitem.description }}</td>
                                     <td>{{ todoitem.date_created.date() }}</td>
@@ -78,20 +85,15 @@
                                         {% endif %}
                                     </td>
                                     <td>Not Completed</td>
-                                {% endif %}
-
-                                <td>
-                                    <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">Edit</a>
-
-                                    <a onclick="playDelSound(event);" href="/delete/{{ todoitem.item_id }}" class="btn btn-danger">Delete</a>
-
-                                    {% if todoitem.is_completed == False %}
-                                        <a href="/done/{{ todoitem.item_id }}" class="btn btn-successs">Mark As Done</a>
-                                    {% else %}
-                                        <a href="#" class="btn btn-success" disabled="disabled">Mark As Done</a>
-                                    {% endif %}
-                                </td>
-                            </tr>
+                                    <td>
+                                        <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">Edit</a>
+    
+                                        <a onclick="playDelSound(event);" href="/delete/{{ todoitem.item_id }}" class="btn delete-button">Delete</a>
+    
+                                        <a href="/done/{{ todoitem.item_id }}" class="btn btn-tobecomplete">Done</a>
+                                    </td>
+                                </tr>
+                            {% endif %}
 
                             <!-- Add ToDo Item Popup Dialog Box -->
                             <div id="addTask" class="modal fade" role="dialog">

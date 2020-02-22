@@ -16,7 +16,8 @@
                 <th>Task Description</th>
                 <th>Date Started</th>
                 <th>Date Completed</th>
-                <th>Number Of Days Worked</th>
+                <!-- <th>Number of Days Worked</th> -->
+                <th>Number Of Hours Worked</th>
             </tr>
 
             {% for completed_items in completed_todoitems %}
@@ -24,9 +25,10 @@
                     {% if completed_items.is_completed == True %}
                         <td>{{ completed_items.title }}</td>
                         <td>{{ completed_items.description }}</td>
-                        <td>{{ completed_items.date_created.date() }}</td>
-                        <td>{{ completed_items.date_completed.date() }}</td>
-                        <td>{{ (completed_items.date_completed - completed_items.date_created).days }}&nbsp;Day(s)</td>
+                        <td>{{ moment(completed_items.date_created).format("LLL") }}</td>
+                        <td>{{ moment(completed_items.date_completed).format("LLL") }}</td>
+                        <!-- <td>{{ (completed_items.date_completed - completed_items.date_created).days }}&nbsp;Day(s)</td> -->
+                        <td>{{ ((completed_items.date_completed - completed_items.date_created).days * 24 + (completed_items.date_completed - completed_items.date_created).seconds / 3600)|int }}&nbsp;Hours</td>
                     {% endif %}
                 </tr>
             {% endfor %}
