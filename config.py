@@ -18,3 +18,6 @@ class Config(object):
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     ADMINS = ["jeet.java.13@gmail.com"]
+
+    # Supported Languages List
+    LANGUAGES = ["en", "ja"]

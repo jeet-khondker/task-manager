@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Task Management System - User {{ current_user.firstName }}
+    {{ _("Task Management System - User") }} {{ current_user.firstName }}
 {% endblock %}
 
 {% block app_content %}
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
-                <h1>User: {{ user.firstName }}&nbsp;{{ user.lastName }}</h1>
-                <h1>Username: {{ user.username }}</h1>
-                <h1>Email Address: {{ user.email }}</h1>
+                <h1>{{ _("User:") }} {{ user.firstName }}&nbsp;{{ user.lastName }}</h1>
+                <h1>{{ _("Username:") }} {{ user.username }}</h1>
+                <h1>{{ _("Email Address:") }} {{ user.email }}</h1>
                 {% if user == current_user %}
-                    <p><a href="{{ url_for('editProfile') }}" class="btn btn-primary">Edit Profile</a></p>
+                    <p><a href="{{ url_for('editProfile') }}" class="btn btn-primary">{{ _("Edit Profile") }}</a></p>
                 {% endif %}
             </div>
         </div>

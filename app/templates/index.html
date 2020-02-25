@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Task Management System - Dashboard
+    {{ _("Task Management System - Dashboard") }}
 {% endblock %}
 
 {% block app_content %}
@@ -12,29 +12,29 @@
             <div class="jumbotron">
                 <div class="row">
                     <div class="col-md-10">
-                        <h2>Manage Your Tasks</h2>
+                        <h2>{{ _("Manage Your Tasks") }}</h2>
                     </div>
                     <div class="col-md-2">
                         <span class="align-middle">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTask">Add New Task</button>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTask">{{ _("Add New Task") }}</button>
                         </span>
                     </div>
                 </div>
             </div>
 
-            <h1 class="text-center">Tasks At A Glance</h1>
+            <h1 class="text-center">{{ _("Tasks At A Glance") }}</h1>
             {% if todoitems|length < 1 %}
-                <h3 class="text-center">Currently you dont have any tasks, {{ current_user.firstName }}. Create One!</h3>
+                <h3 class="text-center">{{ _("Currently you dont have any tasks") }}, {{ current_user.firstName }}{{ _(". Create One?") }}</h3>
             {% else %}
                 <table class="table table-dark">
                     <tr class="table-heading">
-                        <th>Task</th>
-                        <th>Description</th>
-                        <th>Date Added</th>
-                        <th>Date Updated</th>
-                        <th>Date Completed</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th>{{ _("Task") }}</th>
+                        <th>{{ _("Description") }}</th>
+                        <th>{{ _("Date Added") }}</th>
+                        <th>{{ _("Date Updated") }}</th>
+                        <th>{{ _("Date Completed") }}</th>
+                        <th>{{ _("Status") }}</th>
+                        <th>{{ _("Actions") }}</th>
                     </tr>
                     
                         {% for todoitem in todoitems %}
@@ -59,10 +59,10 @@
                                             -
                                         {% endif %}
                                     </td>
-                                    <td>Completed</td>
+                                    <td>{{ _("Completed") }}</td>
                                     <td>
-                                        <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">Edit</a>
-                                        <a onclick="playDelSound(event);" href="/delete/{{ todoitem.item_id }}" class="btn delete-button">Delete</a>
+                                        <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">{{ _("Edit") }}</a>
+                                        <a onclick="playDelSound(event);" href="/delete/{{ todoitem.item_id }}" class="btn delete-button">{{ _("Delete") }}</a>
                                     </td>
                                 </tr>
                             {% else %}
@@ -84,69 +84,42 @@
                                             -
                                         {% endif %}
                                     </td>
-                                    <td>Not Completed</td>
+                                    <td>{{ _("Not Completed") }}</td>
                                     <td>
-                                        <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">Edit</a>
+                                        <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">{{ _("Edit") }}</a>
     
-                                        <a onclick="playDelSound(event);" href="/delete/{{ todoitem.item_id }}" class="btn delete-button">Delete</a>
+                                        <a onclick="playDelSound(event);" href="/delete/{{ todoitem.item_id }}" class="btn delete-button">{{ _("Delete") }}</a>
     
-                                        <a href="/done/{{ todoitem.item_id }}" class="btn btn-tobecomplete">Done</a>
+                                        <a href="/done/{{ todoitem.item_id }}" class="btn btn-tobecomplete">{{ _("Done") }}</a>
                                     </td>
                                 </tr>
                             {% endif %}
-
-                            <!-- Add ToDo Item Popup Dialog Box -->
-                            <div id="addTask" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="text-center modal-title">Add Task</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{ url_for('add_task') }}" method="POST" autocomplete="off">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Task Title" name="title" required="1">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Task Description" name="description" required="1">
-                                                </div>
-                                                <div class="form-group">
-                                                    <button class="btn btn-success" type="submit">Add Task</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <!-- Edit ToDo Item Popup Dialog Box -->
                             <div id="editItem{{todoitem.item_id}}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="text-center modal-title">Update Task</h4>
+                                            <h4 class="text-center modal-title">{{ _("Update Task") }}</h4>
                                         </div>
                                         <div class="modal-body">
                                             <form action="{{ url_for('update') }}" method="POST">
                                                 <div class="form-group">
-                                                    <label>Task Title</label>
+                                                    <label>{{ _("Task Title") }}</label>
                                                     <input type="hidden" name="item_id" value="{{todoitem.item_id}}">
                                                     <input type="text" class="form-control" name="title" value="{{todoitem.title}}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Task Description</label>
+                                                    <label>{{ _("Task Description") }}</label>
                                                     <input type="text" class="form-control" name="description" value="{{todoitem.description}}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <button class="btn btn-success" type="submit">Update Task</button>
+                                                    <button class="btn btn-success" type="submit">{{ _("Update Task") }}</button>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">{{ _("Close") }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -156,6 +129,34 @@
                     
                 </table>
             {% endif %}
+
+            <!-- Add ToDo Item Popup Dialog Box -->
+            <div id="addTask" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="text-center modal-title">{{ _("Add Task") }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url_for('add_task') }}" method="POST" autocomplete="off">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Task Title" name="title" required="1">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Task Description" name="description" required="1">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-success" type="submit">{{ _("Add Task") }}</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">{{ _("Close") }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     

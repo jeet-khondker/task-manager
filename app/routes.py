@@ -1,14 +1,18 @@
-from flask import render_template, url_for, flash, redirect, request, jsonify
+from flask import render_template, url_for, flash, redirect, request, jsonify, g
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+from flask_babel import _, get_locale
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.models import User, ToDo
 from app.email import send_password_reset_email
 
 from datetime import datetime
-import pytz
 
+# Storing Selected Language In Flask.g
+@app.before_request
+def before_request():
+    g.locale = str(get_locale())
 
 # Home Page URL Route
 @app.route('/', methods = ["POST", "GET"])
@@ -27,7 +31,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username = form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash("Invalid Username Or Password")
+            flash(_("Invalid Username Or Password"))
             return redirect(url_for("login"))
         login_user(user, remember = form.remember_me.data)
         next_page = request.args.get("next")
@@ -53,7 +57,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash("Congratulations! You are now a registered user.")
+        flash(_("Congratulations! You are now a registered user."))
         return redirect(url_for("login"))
     return render_template("register.html", form = form)
 
@@ -74,10 +78,10 @@ def add_task():
         try:
             db.session.add(new_task)
             db.session.commit()
-            flash("Item Added! Your ToDo Item Successfully Created!")
+            flash(_("Item Added! Your ToDo Item Successfully Created!"))
             return redirect(url_for("index"))
         except:
-            flash("There was an issue adding your task! Please try again later.")
+            flash(_("There was an issue adding your task! Please try again later."))
 
 # Update Task
 @app.route("/update", methods = ["GET", "POST"])
@@ -102,7 +106,7 @@ def delete(id):
         db.session.commit()
         return redirect(url_for("index"))
     except:
-        flash("There was an problem deleting that task! Please try again later.")
+        flash(_("There was an problem deleting that task! Please try again later."))
 
 # User Profile View
 @app.route("/user/<username>")
@@ -121,7 +125,7 @@ def editProfile():
         current_user.firstName = form.firstName.data
         current_user.lastName = form.lastName.data
         db.session.commit()
-        flash("Your changes have been saved")
+        flash(_("Your changes have been saved"))
         return redirect(url_for("editProfile"))
     elif request.method == "GET":
         form.username.data = current_user.username
@@ -149,9 +153,6 @@ def done_task(id):
 def view_taskreport(user_id):
     # All Completed Tasks By A Specific User
     completed_todoitems = db.session.query(ToDo).filter_by(user_id = current_user.id).filter(ToDo.is_completed == True).order_by(ToDo.date_created.desc()).all()
-    # user = User.query.get(current_user.username)
-    # tasks = user.todoitems.query.all()
-    # completed_todoitems = ToDo.query.filter_by(tasks.is_completed == True).order_by(ToDo.date_created.desc()).all()
     return render_template("taskreport.html", completed_todoitems = completed_todoitems)
 
 # Reset Password Request
@@ -167,7 +168,7 @@ def reset_password_request():
 
         if user:
             send_password_reset_email(user)
-        flash("Check your email for the instructions to reset your password.")
+        flash(_("Check your email for the instructions to reset your password."))
         return redirect(url_for("login"))
     return render_template("reset_password_request.html", form = form)
 
@@ -183,7 +184,7 @@ def reset_password(token):
     if form.validate_on_submit():
         user.set_password(form.password.data)
         db.session.commit()
-        flash("Your password has been reset.")
+        flash(_("Your password has been reset."))
         return redirect(url_for("login"))
     return render_template("reset_password.html", form = form)
     

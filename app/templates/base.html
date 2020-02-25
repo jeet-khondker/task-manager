@@ -18,16 +18,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand text-uppercase" href="{{ url_for('index') }}">Task Manager</a>
+                <a class="navbar-brand text-uppercase" href="{{ url_for('index') }}">{{ _("Task Manager") }}</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_anonymous %}
-                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        <li><a href="{{ url_for('login') }}">{{ _("Login") }}</a></li>
                     {% else %}
                         <li><a href="{{ url_for('user', username=current_user.username) }}">{{ current_user.firstName }}&nbsp;{{ current_user.lastName }}</a></li>
-                        <li><a href="{{ url_for('view_taskreport', user_id=current_user.id) }}">Task Report</a></li>
-                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        <li><a href="{{ url_for('view_taskreport', user_id=current_user.id) }}">{{ _("Task Report") }}</a></li>
+                        <li><a href="{{ url_for('logout') }}">{{ _("Logout") }}</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -61,5 +61,6 @@
 {% block scripts %}
     {{ super() }}
     {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}
     <script src="{{ url_for('.static', filename='js/app.js') }}"></script>
 {% endblock %}

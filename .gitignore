@@ -51,3 +51,4 @@ accounts.txt
 __pycache__/
 .vscode
 .env
+messages.pot

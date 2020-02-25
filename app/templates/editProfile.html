@@ -2,7 +2,7 @@
 {% import 'bootstrap/wtf.html' as bootstrapForms %}
 
 {% block title %}
-    Task Management System - Edit User Profile
+    {{ _("Task Management System - Edit User Profile") }}
 {% endblock %}
 
 {% block app_content %}
@@ -10,8 +10,8 @@
     <div class="comntainer">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h1 class="heading text-center">📝&emsp;Task Manager</h1>
-                <h4 class="text-center">Edit Your Information</h4>
+                <h1 class="heading text-center">📝&emsp;{{ _("Task Manager") }}</h1>
+                <h4 class="text-center">{{ _("Edit Your Information") }}</h4>
                 {{ bootstrapForms.quick_form(form, extra_classes = "form-editProfile", button_map = {"submit": "btn btn-editProfile text-uppercase"}) }}
             </div>
         </div>

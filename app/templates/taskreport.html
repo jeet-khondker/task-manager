@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Task Management System - Task Report
+    {{ _("Task Management System - Task Report") }}
 {% endblock %}
 
 {% block app_content %}
-    <h1 class="text-center">{{ current_user.firstName }} Task Report</h1>
+    <h1 class="text-center">{{ current_user.firstName }}{{ _("\'s Task Report") }}</h1>
 
     {% if completed_todoitems|length < 1 %}
-        <h3 class="text-center">Currently you did not complete any tasks, {{ current_user.firstName }}.</h3>
+        <h3 class="text-center">{{ _("Currently you did not complete any tasks,") }} {{ current_user.firstName }}{{ _('.') }}</h3>
     {% else %}
         <table class="table table-hover table-dark">
             <tr>
-                <th>Task Name</th>
-                <th>Task Description</th>
-                <th>Date Started</th>
-                <th>Date Completed</th>
+                <th>{{ _("Task Name") }}</th>
+                <th>{{ _("Task Description") }}</th>
+                <th>{{ _("Date Started") }}</th>
+                <th>{{ _("Date Completed") }}</th>
                 <!-- <th>Number of Days Worked</th> -->
-                <th>Number Of Hours Worked</th>
+                <th>{{ _("Number Of Hours Worked") }}</th>
             </tr>
 
             {% for completed_items in completed_todoitems %}
@@ -28,7 +28,7 @@
                         <td>{{ moment(completed_items.date_created).format("LLL") }}</td>
                         <td>{{ moment(completed_items.date_completed).format("LLL") }}</td>
                         <!-- <td>{{ (completed_items.date_completed - completed_items.date_created).days }}&nbsp;Day(s)</td> -->
-                        <td>{{ ((completed_items.date_completed - completed_items.date_created).days * 24 + (completed_items.date_completed - completed_items.date_created).seconds / 3600)|int }}&nbsp;Hours</td>
+                        <td>{{ ((completed_items.date_completed - completed_items.date_created).days * 24 + (completed_items.date_completed - completed_items.date_created).seconds / 3600)|int }}&nbsp;{{ _("Hours") }}</td>
                     {% endif %}
                 </tr>
             {% endfor %}

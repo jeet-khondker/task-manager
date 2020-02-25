@@ -1,0 +1,383 @@
+# Japanese translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-02-25 16:10+0900\n"
+"PO-Revision-Date: 2020-02-25 09:31+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: app/__init__.py:25
+msgid "Please login to access the system."
+msgstr "ログインして、システムをアクセスしてください。"
+
+#: app/email.py:22
+msgid "【Task Manager】Reset Your Password"
+msgstr "【作業管理】パスワードをリセットください"
+
+#: app/forms.py:9
+msgid "Username is required."
+msgstr "ユーザー名が必須です。"
+
+#: app/forms.py:9 app/forms.py:16 app/forms.py:36
+msgid "Username"
+msgstr "ユーザー名"
+
+#: app/forms.py:10
+msgid "Password is required."
+msgstr "パスワードが必須です。"
+
+#: app/forms.py:10 app/forms.py:20 app/forms.py:58
+msgid "Password"
+msgstr "パスワード"
+
+#: app/forms.py:11
+msgid "Remember Me"
+msgstr "私を覚えてますか？"
+
+#: app/forms.py:12 app/templates/base.html:26
+msgid "Login"
+msgstr "ログイン"
+
+#: app/forms.py:16 app/forms.py:19 app/forms.py:36
+msgid "Username is required"
+msgstr "ユーザー名が必須です"
+
+#: app/forms.py:17 app/forms.py:37
+msgid "First Name is required"
+msgstr "ファーストネームが必須です"
+
+#: app/forms.py:17 app/forms.py:37
+msgid "First Name"
+msgstr "ファーストネーム"
+
+#: app/forms.py:18 app/forms.py:38
+msgid "Last Name is required"
+msgstr "苗字が必須です"
+
+#: app/forms.py:18 app/forms.py:38
+msgid "Last Name"
+msgstr "苗字"
+
+#: app/forms.py:19 app/forms.py:53
+msgid "Email Address"
+msgstr "Eメールアドレス"
+
+#: app/forms.py:20 app/forms.py:58
+msgid "Password is required"
+msgstr "パスワードが必須です"
+
+#: app/forms.py:21
+msgid "Re-entry of Password is required"
+msgstr "パスワードの再入力が必須です"
+
+#: app/forms.py:21
+msgid "Retype Password"
+msgstr "パスワードを再入力ください"
+
+#: app/forms.py:22
+msgid "Register"
+msgstr "登録"
+
+#: app/forms.py:27
+msgid "Username already exists! Please use a different username."
+msgstr "ユーザー名は既に存在しています！別のユーザー名を使用してください。"
+
+#: app/forms.py:32
+msgid "Email address already exists! Please use a different email address."
+msgstr "Eメールアドレスは既に存在します！別のEメールアドレスを使用してください。"
+
+#: app/forms.py:39 app/templates/index.html:64 app/templates/index.html:89
+msgid "Edit"
+msgstr "編集"
+
+#: app/forms.py:49
+msgid "Please use a different username."
+msgstr "別のユーザー名を使用してください。"
+
+#: app/forms.py:53
+msgid "Email is required"
+msgstr "Eメールアドレスが必須です"
+
+#: app/forms.py:54 app/forms.py:60 app/templates/login.html:22
+msgid "Reset Password"
+msgstr "パスワードをリセットください"
+
+#: app/forms.py:59
+msgid "Re-Confirmation of Password is required"
+msgstr "パスワードの確認が必須です"
+
+#: app/forms.py:59
+msgid "Confirm Password"
+msgstr "パスワードを確認してください"
+
+#: app/routes.py:34
+msgid "Invalid Username Or Password"
+msgstr "ユーザー名・パスワードが間違えています"
+
+#: app/routes.py:60
+msgid "Congratulations! You are now a registered user."
+msgstr "おめでとう！ユーザーが登録されました。"
+
+#: app/routes.py:81
+msgid "Item Added! Your ToDo Item Successfully Created!"
+msgstr "作業が追加されました！"
+
+#: app/routes.py:84
+msgid "There was an issue adding your task! Please try again later."
+msgstr "作業を追加時に問題が発生しました！後でもう一度やり直してください。"
+
+#: app/routes.py:109
+msgid "There was an problem deleting that task! Please try again later."
+msgstr "作業を削除時に問題が発生しました！後でもう一度やり直してください。"
+
+#: app/routes.py:128
+msgid "Your changes have been saved"
+msgstr "内容が保存されました"
+
+#: app/routes.py:171
+msgid "Check your email for the instructions to reset your password."
+msgstr "パスワードをリセットする手順について、メールを確認してください。"
+
+#: app/routes.py:187
+msgid "Your password has been reset."
+msgstr "パスワードがリセットされました。"
+
+#: app/templates/404.html:5
+msgid "Task Management System - Request Not Found"
+msgstr "作業管理システム　ー　リクエストが見つかりません"
+
+#: app/templates/404.html:9
+msgid "Your Request Not Found"
+msgstr "リクエストが見つかりません"
+
+#: app/templates/404.html:10 app/templates/500.html:11
+msgid "Back"
+msgstr "戻る"
+
+#: app/templates/500.html:5
+msgid "Task Management System - Internal Server Issue"
+msgstr "作業管理システム　ー　内部サーバーの課題"
+
+#: app/templates/500.html:9
+msgid "An Unexpected Error Has Occured!"
+msgstr "エラーが発生しました！"
+
+#: app/templates/500.html:10
+msgid "The administrator has been notified. We are sorry for the inconvenience."
+msgstr "管理者に連絡されました。ご不便をおかけしてしまい申し訳ございません。"
+
+#: app/templates/base.html:21 app/templates/editProfile.html:13
+#: app/templates/login.html:12 app/templates/register.html:12
+#: app/templates/reset_password_request.html:13
+msgid "Task Manager"
+msgstr "作業管理システム"
+
+#: app/templates/base.html:29
+msgid "Task Report"
+msgstr "作業報告"
+
+#: app/templates/base.html:30
+msgid "Logout"
+msgstr "ログアウト"
+
+#: app/templates/editProfile.html:5
+msgid "Task Management System - Edit User Profile"
+msgstr "作業管理システム　ー　ユーザープロファイル編集"
+
+#: app/templates/editProfile.html:14
+msgid "Edit Your Information"
+msgstr "情報の編集"
+
+#: app/templates/index.html:4
+msgid "Task Management System - Dashboard"
+msgstr "作業管理システム　ー　ダッシュボード"
+
+#: app/templates/index.html:15
+msgid "Manage Your Tasks"
+msgstr "作業の管理"
+
+#: app/templates/index.html:19
+msgid "Add New Task"
+msgstr "新作業の追加"
+
+#: app/templates/index.html:25
+msgid "Tasks At A Glance"
+msgstr "作業一覧"
+
+#: app/templates/index.html:27
+msgid "Currently you dont have any tasks"
+msgstr "現在、作業がありません"
+
+#: app/templates/index.html:27
+msgid ". Create One?"
+msgstr "。新作成？"
+
+#: app/templates/index.html:31
+msgid "Task"
+msgstr "作業名"
+
+#: app/templates/index.html:32
+msgid "Description"
+msgstr "作業詳細"
+
+#: app/templates/index.html:33
+msgid "Date Added"
+msgstr "登録日"
+
+#: app/templates/index.html:34
+msgid "Date Updated"
+msgstr "更新日"
+
+#: app/templates/index.html:35 app/templates/taskreport.html:18
+msgid "Date Completed"
+msgstr "終了日"
+
+#: app/templates/index.html:36
+msgid "Status"
+msgstr "状況"
+
+#: app/templates/index.html:37
+msgid "Actions"
+msgstr "アクション"
+
+#: app/templates/index.html:62
+msgid "Completed"
+msgstr "終了"
+
+#: app/templates/index.html:65 app/templates/index.html:91
+msgid "Delete"
+msgstr "削除"
+
+#: app/templates/index.html:87
+msgid "Not Completed"
+msgstr "未終了"
+
+#: app/templates/index.html:93
+msgid "Done"
+msgstr "終了"
+
+#: app/templates/index.html:103 app/templates/index.html:114
+msgid "Add Task"
+msgstr "作業追加"
+
+#: app/templates/index.html:119 app/templates/index.html:149
+msgid "Close"
+msgstr "閉じる"
+
+#: app/templates/index.html:130 app/templates/index.html:144
+msgid "Update Task"
+msgstr "作業更新"
+
+#: app/templates/index.html:135
+msgid "Task Title"
+msgstr "作業名"
+
+#: app/templates/index.html:140 app/templates/taskreport.html:16
+msgid "Task Description"
+msgstr "作業詳細"
+
+#: app/templates/login.html:5
+msgid "Task Management System - User Login"
+msgstr "作業管理システム　ー　ユーザーログイン"
+
+#: app/templates/login.html:13
+msgid "Login & Start Managing Your Tasks!"
+msgstr "ログインして、作業の管理始まりましょう！"
+
+#: app/templates/login.html:19
+msgid "Are You A New User?"
+msgstr "新ユーザー？"
+
+#: app/templates/login.html:19
+msgid "Register Now"
+msgstr "ユーザー登録"
+
+#: app/templates/login.html:22
+msgid "Forgot Your Password?"
+msgstr "パスワード忘れた？"
+
+#: app/templates/register.html:5
+msgid "Task Management System - User Registration"
+msgstr "作業管理システム　ー　ユーザー登録"
+
+#: app/templates/register.html:13
+msgid "Register & Start Managing Your Tasks!"
+msgstr "登録して、作業の管理始まりましょう！"
+
+#: app/templates/reset_password.html:5
+msgid "Task Management System - Password Reset"
+msgstr "作業管理システム　ー　パスワードリセット"
+
+#: app/templates/reset_password.html:12
+#: app/templates/reset_password_request.html:14
+msgid "Reset Your Password"
+msgstr "パスワードのリセット"
+
+#: app/templates/reset_password_request.html:5
+msgid "Task Management System - Request For Password Reset"
+msgstr "作業管理システム　ー　パスワードリセットの依頼"
+
+#: app/templates/taskreport.html:4
+msgid "Task Management System - Task Report"
+msgstr "作業管理システム　ー　作業報告"
+
+#: app/templates/taskreport.html:8
+msgid "'s Task Report"
+msgstr "の作業報告"
+
+#: app/templates/taskreport.html:11
+msgid "Currently you did not complete any tasks,"
+msgstr "現在、何も作業が終了してないです、"
+
+#: app/templates/taskreport.html:11
+msgid "."
+msgstr "。"
+
+#: app/templates/taskreport.html:15
+msgid "Task Name"
+msgstr "作業名"
+
+#: app/templates/taskreport.html:17
+msgid "Date Started"
+msgstr "開始日"
+
+#: app/templates/taskreport.html:20
+msgid "Number Of Hours Worked"
+msgstr "労働時間数"
+
+#: app/templates/taskreport.html:31
+msgid "Hours"
+msgstr "時間"
+
+#: app/templates/user.html:4
+msgid "Task Management System - User"
+msgstr "作業管理システム　ー　ユーザー"
+
+#: app/templates/user.html:11
+msgid "User:"
+msgstr "ユーザー："
+
+#: app/templates/user.html:12
+msgid "Username:"
+msgstr "ユーザー名"
+
+#: app/templates/user.html:13
+msgid "Email Address:"
+msgstr "Eメールアドレス："
+
+#: app/templates/user.html:15
+msgid "Edit Profile"
+msgstr "プロファイル編集"
+
