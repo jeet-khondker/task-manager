@@ -8,12 +8,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
-                <h1>{{ _("User:") }} {{ user.firstName }}&nbsp;{{ user.lastName }}</h1>
-                <h1>{{ _("Username:") }} {{ user.username }}</h1>
-                <h1>{{ _("Email Address:") }} {{ user.email }}</h1>
-                {% if user == current_user %}
-                    <p><a href="{{ url_for('editProfile') }}" class="btn btn-primary">{{ _("Edit Profile") }}</a></p>
-                {% endif %}
+                <h1 class="heading text-center">📝&emsp;{{ _("Task Manager") }}</h1>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4>{{ _("User:") }} {{ user.firstName }}&nbsp;{{ user.lastName }}</h4>
+                        <h4>{{ _("Username:") }} {{ user.username }}</h4>
+                        <h4>{{ _("Email Address:") }} {{ user.email }}</h4>
+                        {% if user == current_user %}
+                            <p><a href="{{ url_for('editProfile') }}" class="btn btn-editProfile text-uppercase">{{ _("Edit Profile") }}</a></p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -164,6 +164,23 @@ h1.heading {
     color: #fff;
 }
 
+.btn-addTask {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.btn-addTask:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+.btn-addTask:focus {
+    color: #fff;
+}
+
 .btn-passwordreset {
     background-color: #868e96;
     color: #fff;
@@ -268,4 +285,22 @@ h1.heading {
 .btn-tobecomplete:focus {
     background-color: #0275d8;
     border: none;
+}
+
+/* Modal Custom CSS */
+.modal-dialog {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-header {
+    background-color: #000;
+    color: #fff;
+}
+
+.modal-footer {
+    background-color: #999999;
+}
+
+.panel-default {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

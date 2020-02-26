@@ -10,8 +10,8 @@
     {% if completed_todoitems|length < 1 %}
         <h3 class="text-center">{{ _("Currently you did not complete any tasks,") }} {{ current_user.firstName }}{{ _('.') }}</h3>
     {% else %}
-        <table class="table table-hover table-dark">
-            <tr>
+        <table class="table table-dark">
+            <tr class="table-heading">
                 <th>{{ _("Task Name") }}</th>
                 <th>{{ _("Task Description") }}</th>
                 <th>{{ _("Date Started") }}</th>
