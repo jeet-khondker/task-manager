@@ -2,6 +2,7 @@
 
 {% block styles %}
     {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/pc-style.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
 {% endblock %}
@@ -9,7 +10,7 @@
 {% block title %}{% endblock %}
 
 {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-default navbar-expand-lg navbar-light bg-light" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">

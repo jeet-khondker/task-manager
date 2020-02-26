@@ -27,21 +27,23 @@
                 <h3 class="text-center">{{ _("Currently you dont have any tasks") }}, {{ current_user.firstName }}{{ _(". Create One?") }}</h3>
             {% else %}
                 <table class="table table-dark">
-                    <tr class="table-heading">
-                        <th>{{ _("Task") }}</th>
-                        <th>{{ _("Description") }}</th>
-                        <th>{{ _("Date Added") }}</th>
-                        <th>{{ _("Date Updated") }}</th>
-                        <th>{{ _("Date Completed") }}</th>
-                        <th>{{ _("Status") }}</th>
-                        <th>{{ _("Actions") }}</th>
-                    </tr>
-                    
+                    <thead>
+                        <tr class="table-heading">
+                            <th>{{ _("Task") }}</th>
+                            <th>{{ _("Description") }}</th>
+                            <th>{{ _("Date Added") }}</th>
+                            <th>{{ _("Date Updated") }}</th>
+                            <th>{{ _("Date Completed") }}</th>
+                            <th>{{ _("Status") }}</th>
+                            <th>{{ _("Actions") }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {% for todoitem in todoitems %}
                             
                             
                             {% if todoitem.is_completed == True %}
-                                <tr class="data-hover" style="color: #867979; background-color: #5c5f63;">
+                                <tr class="data-hover">
                                     <td>{{ todoitem.title }}</td>
                                     <td>{{ todoitem.description }}</td>
                                     <td>{{ todoitem.date_created.date() }}</td>
@@ -59,7 +61,7 @@
                                             -
                                         {% endif %}
                                     </td>
-                                    <td>{{ _("Completed") }}</td>
+                                    <td><span class="badge badge-completed">{{ _("Completed") }}</span></td>
                                     <td>
                                         <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">{{ _("Edit") }}</a>
                                         <a onclick="playDelSound(event);" href="/delete/{{ todoitem.item_id }}" class="btn delete-button">{{ _("Delete") }}</a>
@@ -84,7 +86,7 @@
                                             -
                                         {% endif %}
                                     </td>
-                                    <td>{{ _("Not Completed") }}</td>
+                                    <td><span class="badge badge-incomplete">{{ _("Not Completed") }}</span></td>
                                     <td>
                                         <a href="/update/{{ todoitem.item_id }}" class="btn btn-primary edit_button" data-toggle="modal" data-target="#editItem{{todoitem.item_id}}">{{ _("Edit") }}</a>
     
@@ -126,6 +128,7 @@
                             </div>
                             
                         {% endfor %}
+                    </tbody>
                     
                 </table>
             {% endif %}

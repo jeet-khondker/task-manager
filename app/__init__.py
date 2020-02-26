@@ -1,6 +1,8 @@
 from flask import Flask, url_for, request
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
+from flask_admin import Admin, AdminIndexView
+from flask_admin.contrib.sqla import ModelView
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
@@ -20,6 +22,9 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+# Adding Admin I/F for user list
+admin = Admin(app)
+
 login = LoginManager(app)
 login.login_view = "login"
 login.login_message = _l("Please login to access the system.")
@@ -33,6 +38,9 @@ moment = Moment(app)
 babel = Babel(app)
 
 from app import routes, models, errors
+
+# Adding Admin I/F for user list
+admin.add_view(ModelView(models.User, db.session))
 
 # Logging Errors By Email
 if not app.debug:

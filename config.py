@@ -21,3 +21,5 @@ class Config(object):
 
     # Supported Languages List
     LANGUAGES = ["en", "ja"]
+
+    FLASK_ADMIN_SWATCH = "cerulean"
