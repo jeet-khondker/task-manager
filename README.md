@@ -12,6 +12,8 @@ Gunicorn
 ## Deployment
 Heroku
 
+## Author
+Jeet Z. H. Khondker - Python Developer
 
 
 
