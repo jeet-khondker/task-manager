@@ -16,7 +16,7 @@ class RegistrationForm(FlaskForm):
     username = StringField("Username", validators = [DataRequired(message=_l("Username is required"))], render_kw = {"placeholder": _l("Username")})
     firstName = StringField("First Name", validators = [DataRequired(message=_l("First Name is required"))], render_kw = {"placeholder": _l("First Name")})
     lastName = StringField("Last Name", validators = [DataRequired(message=_l("Last Name is required"))], render_kw = {"placeholder": _l("Last Name")})
-    email = StringField("Email", validators = [DataRequired(message=_l("Username is required")), Email()], render_kw = {"placeholder": _l("Email Address")})
+    email = StringField("Email", validators = [DataRequired(message=_l("Email Address is required")), Email()], render_kw = {"placeholder": _l("Email Address")})
     password = PasswordField("Password", validators = [DataRequired(message=_l("Password is required"))], render_kw = {"placeholder": _l("Password")})
     confirm_password = PasswordField("Repeat Password", validators = [DataRequired(message=_l("Re-entry of Password is required")), EqualTo("password")], render_kw = {"placeholder": _l("Retype Password")})
     submit = SubmitField(_l("Register"))
