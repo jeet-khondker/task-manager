@@ -15,7 +15,7 @@ Gunicorn
 Heroku
 
 ## Author
-Jeet Z. H. Khondker - Python Developer
+Jeet Z. H. Khondker - Full Stack Python Developer
 
 
 
