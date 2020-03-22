@@ -52,3 +52,4 @@ __pycache__/
 .vscode
 .env
 messages.pot
+video/
