@@ -5,6 +5,8 @@ This App is multi-language supported: English and Japanese. Depending on user's 
 
 URL: https://todosys.herokuapp.com
 
+![Screenshot](Screenshot.png)
+
 ## Technology Used
 Python 🐍 (Flask Framework), HTML5, CSS3, Javascript, jQuery
 
@@ -16,6 +18,8 @@ Heroku
 
 ## Author
 Jeet Z. H. Khondker - Full Stack Python Developer
+
+
 
 
 
