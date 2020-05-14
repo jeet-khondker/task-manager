@@ -56,5 +56,5 @@ class ResetPasswordRequestForm(FlaskForm):
 # Password Reset Form
 class ResetPasswordForm(FlaskForm):
     password = PasswordField("Password", validators = [DataRequired(message=_l("Password is required"))], render_kw = {"placeholder": _l("Password")})
-    confirmPassword = PasswordField("Confirm Password", validators = [DataRequired(message=_l("Re-Confirmation of Password is required")), EqualTo("password")], render_kw = {"placeholder": _l("Confirm Password")})
+    confirm_password = PasswordField("Confirm Password", validators = [DataRequired(message=_l("Re-Confirmation of Password is required")), EqualTo("password")], render_kw = {"placeholder": _l("Confirm Password")})
     submit = SubmitField(_l("Reset Password"))
